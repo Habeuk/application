@@ -1,0 +1,17 @@
+<fieldset {{ attributes }}>
+ {% if title %}
+  {% if collapsible %}
+  <legend class="panel-heading">
+   <a href="{{ target }}" class="panel-title fieldset-legend{{ collapsed ? ' collapsed' : '' }}" data-toggle="collapse">{{ title }}<i class="fa fa-angle-up"></i><i class="fa fa-angle-down"></i></a>
+  </legend>
+{% else %}
+  <legend class="panel-heading">
+   <span class="panel-title fieldset-legend">{{ title }}</span>
+  </legend>
+  {% endif %}
+ {% endif %}
+ <div{{ body_attributes }}>
+  {% if description %}<div class="help-block">{{ description }}</div>  {% endif %}
+  {{ content }}
+ </div>
+</fieldset>

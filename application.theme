@@ -1,0 +1,590 @@
+<?php
+
+/**
+ *
+ * @file
+ * The primary PHP file for this theme.
+ */
+use Drupal\Core\Menu\MenuTreeParameters;
+
+/**
+ * Implements hook_theme().
+ *
+ * Register theme hook implementations.
+ */
+function application_theme(&$existing, $type, $theme, $path) {
+  // //suplanter l'inscription.
+  // / doc =>
+  // https://www.drupal.org/docs/7/theming/overriding-themable-output/customizing-and-overriding-user-login-page-register-and
+  $items['user_register_form'] = array(
+    'render element' => 'form',
+    'path' => \Drupal::service('extension.path.resolver')->getPath('theme', 'application') . '/templates/user',
+    'template' => 'user-register-form',
+    'preprocess functions' => array(
+      'application_preprocess_user_register_form'
+    )
+  );
+  // ///////
+  $items['user_login'] = array(
+    'render element' => 'form',
+    'path' => \Drupal::service('extension.path.resolver')->getPath('theme', 'application') . '/templates/user',
+    'template' => 'user-login',
+    'preprocess functions' => array(
+      'application_preprocess_user_login'
+    )
+  );
+  // ////////
+  $items['user_pass'] = array(
+    'render element' => 'form',
+    'path' => \Drupal::service('extension.path.resolver')->getPath('theme', 'application') . '/templates/user',
+    'template' => 'user-pass',
+    'preprocess functions' => array(
+      'application_preprocess_user_pass'
+    )
+  );
+
+  return $items;
+}
+
+function application_preprocess_user_register_form(&$vars) {
+  // displayVarLogstheme($vars['form']['account'],
+  // $filename='preprocess_user_register_form');
+}
+
+function application_preprocess_user_login(&$vars) {
+}
+
+function application_preprocess_user_pass(&$vars) {
+  $vars['intro_text'] = t('This is my super awesome request new password form');
+}
+
+function application_preprocess_node_product_node_form(&$vars) {
+  $vars['intro_text'] = t('This is my super awesome request new password form');
+}
+
+/**
+ * load scss csss
+ */
+function _load_scss() {
+  /*
+   * $themeName='application';
+   * # convertie un fichier scss en css.
+   * //require_once
+   * DRUPAL_ROOT.'/sites/all/libraries/scssphp-master/scss.inc.php';
+   * # convert bootstrap scss to css
+   * $parser = new Leafo\ScssPhp\Compiler;
+   * #build bootstrap end default style theme
+   * $result=$parser->compile('@import
+   * "'.DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/scss/bootstrap-overlay.scss";');
+   * $filename =
+   * DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/css/bootstrap.css';
+   * $monfichier = fopen($filename, 'w+');
+   * fputs($monfichier, $result);
+   * fclose($monfichier);
+   * #build custom style
+   * $result=$parser->compile('@import
+   * "'.DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/scss/style.scss";');
+   * $filename = DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/css/style.css';
+   * $monfichier = fopen($filename, 'w+');
+   * fputs($monfichier, $result);
+   * fclose($monfichier);
+   * #build custom style
+   * $result=$parser->compile('@import
+   * "'.DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/scss/accueill.scss";');
+   * $filename =
+   * DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/css/accueill.css';
+   * $monfichier = fopen($filename, 'w+');
+   * fputs($monfichier, $result);
+   * fclose($monfichier);
+   * #build custom style
+   * $result=$parser->compile('@import
+   * "'.DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/scss/article.scss";');
+   * $filename = DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/css/article.css';
+   * $monfichier = fopen($filename, 'w+');
+   * fputs($monfichier, $result);
+   * fclose($monfichier);
+   * #build custom style
+   * $result=$parser->compile('@import
+   * "'.DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/scss/profil.scss";');
+   * $filename = DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/css/profil.css';
+   * $monfichier = fopen($filename, 'w+');
+   * fputs($monfichier, $result);
+   * fclose($monfichier);
+   */
+}
+
+/**
+ * implement hook_css_alter
+ */
+function application_css_alter(&$css) {
+  # decommente en mode production
+  # _load_scss();
+}
+
+/**
+ * implement hook_preprocess_page
+ */
+function application_preprocess_page(&$variables) {
+  // global $user;
+  # decommente en mode developpement
+  _load_scss();
+  # permet de verifier si c'est la page d'acueil
+  // $variables['wbu_is_front'] =
+  // \Drupal::service('path.matcher')->isFrontPage();
+  # charge l'image de l'utilisateur courant
+  // $variables['current_user_img'] = '';
+  // if (!empty($user->picture) && is_numeric($user->picture) && $user->picture
+  // > 0) {
+  // $picture = file_load($user->picture);
+  // // $picture = theme('image', array('path' => $picture->uri, 'alt' =>
+  // // $user->name, 'title' => $user->name));
+  // $variables['current_user_img'] = theme('image_style', array(
+  // 'style_name' => 'thumbnail',
+  // 'path' => $picture->uri,
+  // 'alt' => $user->name,
+  // 'title' => $user->name
+  // ));
+  // }
+  // # add template for login user
+  // $userCurrent = \Drupal::currentUser();
+  // if ($userCurrent->isAuthenticated()) {
+  // $variables['theme_hook_suggestions'][] = 'page__userlogin';
+  // }
+  // $parameters = new MenuTreeParameters();
+  // $parameters->setMinDepth(2)->setMaxDepth(4)->onlyEnabledLinks();
+  // $variables["display_menu"] = _display_menu($page_data =
+  // \Drupal::service('toolbar.menu_tree')->load('main_menu', $parameters));
+  // new
+  $variables['logopath'] = theme_get_setting('logo.url');
+  $site_config = \Drupal::config('system.site');
+  $variables['site_name'] = $site_config->get('name');
+  $variables['site_slogan'] = $site_config->get('slogan');
+}
+
+function application_form_user_login_form_alter(&$form, &$form_state, $form_id) {
+  $form['name']['#prefix'] = '<div class="form-style-agile">';
+  $form['name']['#suffix'] = '</div>';
+
+  $form['pass']['#prefix'] = '<div class="form-style-agile">';
+  $form['pass']['#suffix'] = '</div>';
+
+  // dump($form['actions']);
+  $form['actions']['#prefix'] = '<div class="form-item">';
+  $form['actions']['#suffix'] = '</div>';
+  $form['actions']['submit']['#attributes'] = [
+    'class' => [
+      'btn',
+      'btn-primary',
+      'form-submit'
+    ]
+  ];
+  $form['header_title'] = [
+    '#type' => 'html_tag',
+    '#tag' => 'h2',
+    '#value' => 'Connectez Vous',
+    '#weight' => -10,
+    '#attributes' => [
+      'class' => [
+        'title-Big'
+      ]
+    ],
+    [
+      '#type' => 'html_tag',
+      '#tag' => 'i',
+      '#attributes' => [
+        'class' => [
+          'fas',
+          'fa-level-down-alt'
+        ]
+      ]
+    ]
+  ];
+
+  $form['container_div'] = [
+    '#theme' => 'container',
+    '#children' => [
+      $form['header_title'],
+      $form['name'],
+      $form['pass'],
+      $form['actions']
+    ],
+    '#weight' => -10
+  ];
+  unset($form['header_title']);
+  unset($form['name']);
+  unset($form['pass']);
+  unset($form['actions']);
+  // dump($form);
+}
+
+function application_preprocess_form_element($vars) {
+  // dump($vars);
+  // $vars['attributes'] = [
+  // 'class' => [
+  // 'form-style-agile'
+  // ]
+  // ];
+}
+
+/**
+ */
+function _display_menu($main_menu, $depth = 0) {
+  # echo '<pre>'; var_dump($depth); var_dump(count($main_menu) ); echo '</pre>';
+  // $filename='debug-menu_'.time();
+  // displayVarLogstheme($main_menu, $filename);
+  static $linkClass = 1;
+  $sub_menu = '';
+  $lang = \Drupal::languageManager()->getDefaultLanguage();
+  $sub_menu_class = 'menupooledamin';
+  $id = 'menu';
+  if ($depth) {
+    $sub_menu_class = 'sub-menu';
+    $id = null;
+  }
+  $html_menu = '<ul class="' . $sub_menu_class . '" id="' . $id . '" >';
+  foreach ($main_menu as $key => $menu) {
+    $link = $menu["link"];
+    $icon = (!empty($link['options']['content']['fontawasonne'])) ? $link['options']['content']['fontawasonne'] : '';
+    $id_taxo = explode("/term/", $link["link_path"]);
+    if (!empty($id_taxo[1])) {
+      $id_taxo = 'taxo' . $id_taxo[1];
+    }
+    else {
+      $id_taxo = 'menu' . $link['mlid'];
+    }
+    if (!$link["hidden"]) {
+      // if($link["language"]== $lang->language )
+      {
+        $class_li = "";
+        if ($link["in_active_trail"]) {
+          $class_li = "current_page_item current-menu-item active ";
+          // echo '<pre>'; print_r($menu); echo '</pre>';
+        }
+        if ($linkClass == 1) {
+          if (drupal_is_front_page()) {
+            $class_li = "current_page_item current-menu-item active ";
+          }
+          // $class_li = $class_li.' hidden';
+        }
+        if ($link["has_children"]) {
+          $class_li = $class_li . ' menu-item-has-children';
+        }
+
+        if (!empty($menu["below"])) {
+          $sub_menu = _display_menu($menu["below"], $link["depth"]);
+        }
+        $link['html'] = TRUE; // pour retourner le html
+                              // $link['title']='<strong>'.$link["title"].'</strong>';
+        $options = array(
+          'attributes' => array(),
+          'html' => TRUE
+        );
+        $html_menu .= '<li class=" menu-item menu-item-type-taxonomy ' . $key . '  ' . $class_li . ' ' . $id_taxo . ' ">' . l($icon . ' <span>' . $link['title'] . '</span>', $link['href'], $options) . $sub_menu . '</li>';
+        ++$linkClass;
+      }
+    }
+  }
+  $html_menu .= '</ul>';
+  return $html_menu;
+}
+
+/**
+ *
+ * @param unknown $var
+ * @param string $filename
+ */
+function displayVarLogstheme($var, $filename = 'debug') {
+  $path_of_module = path_to_theme();
+  if (!file_exists($path_of_module . '/logs')) {
+    mkdir($path_of_module . '/logs');
+  }
+  $filename = $path_of_module . '/logs/' . $filename . '.inc';
+  ob_start();
+  print_r($var);
+  $result = ob_get_clean();
+  // if (!file_exists($filename) )
+  {
+    $monfichier = fopen($filename, 'w+');
+    fputs($monfichier, $result);
+    fclose($monfichier);
+  }
+  /* */
+}
+
+/**
+ * Returns HTML for a wrapper for a menu sub-tree.
+ *
+ * @param array $variables
+ *        An associative array containing:
+ *        - tree: An HTML string containing the tree's items.
+ *
+ * @return string The constructed HTML.
+ *
+ * @see template_preprocess_menu_tree()
+ * @see theme_menu_tree()
+ *
+ * @ingroup theme_functions
+ */
+function application_menu_tree(array &$variables) {
+  return '<ul class=" menupooledamin">' . $variables['tree'] . '</ul>';
+}
+
+/**
+ * Returns HTML for a menu link and submenu.
+ *
+ * @param array $variables
+ *        An associative array containing:
+ *        - element: Structured array data for a menu link.
+ *
+ * @return string The constructed HTML.
+ *
+ * @see theme_menu_link()
+ *
+ * @ingroup theme_functions
+ */
+function application_menu_link(array $variables) {
+  $element = $variables['element'];
+  $sub_menu = '';
+
+  $options = !empty($element['#localized_options']) ? $element['#localized_options'] : array();
+
+  // Check plain title if "html" is not set, otherwise, filter for XSS attacks.
+  $title = empty($options['html']) ? check_plain($element['#title']) : filter_xss_admin($element['#title']);
+
+  // Ensure "html" is now enabled so l() doesn't double encode. This is now
+  // safe to do since both check_plain() and filter_xss_admin() encode HTML
+  // entities. See: https://www.drupal.org/node/2854978
+  $options['html'] = TRUE;
+
+  $href = $element['#href'];
+  $attributes = !empty($element['#attributes']) ? $element['#attributes'] : array();
+
+  if ($element['#below']) {
+    // Prevent dropdown functions from being added to management menu so it
+    // does not affect the navbar module.
+    if (($element['#original_link']['menu_name'] == 'management') && (module_exists('navbar'))) {
+      $sub_menu = drupal_render($element['#below']);
+    }
+    elseif ((!empty($element['#original_link']['depth'])) && ($element['#original_link']['depth'] == 1)) {
+      // Add our own wrapper.
+      unset($element['#below']['#theme_wrappers']);
+      $sub_menu = '<ul class="sub-menu">' . drupal_render($element['#below']) . '</ul>';
+
+      // Generate as standard dropdown.
+      $title .= '<span class="fa fa-angle-right" style="float: right"></span>';
+      $attributes['class'][] = 'dropdown';
+
+      // Set dropdown trigger element to # to prevent inadvertant page loading
+      // when a submenu link is clicked.
+      // $options['attributes']['data-target'] = '#';
+      // $options['attributes']['class'][] = 'dropdown-toggle';
+      // $options['attributes']['data-toggle'] = 'dropdown';
+    }
+  }
+
+  return '<li' . drupal_attributes($attributes) . '>' . l('<span>' . $title . '</span>', $href, $options) . $sub_menu . "</li>\n";
+}
+
+/**
+ *
+ * @param unknown $variables
+ * @return string
+ */
+function application_menu_local_task(&$variables) {
+  $link = $variables['element']['#link'];
+  $options = [
+    'html' => TRUE
+  ];
+  $iconClass = checkAvailableIcon($link['title']);
+
+  $link = \Drupal\Core\Link::fromTextAndUrl($variables['element']['#link']['title'], $variables['element']['#link']['url'], $options);
+  $renderableLink = $link->toRenderable();
+  $renderableLink['#icon'] = [
+    '#type' => 'html_tag',
+    '#tag' => 'i',
+    '#attributes' => [
+      'class' => [
+        $iconClass
+      ]
+    ]
+  ];
+
+  $listItem = [
+    '#type' => 'html_tag',
+    '#tag' => 'li',
+    '#attributes' => [
+      'class' => [
+        !empty($variables['element']['#active']) ? 'active' : ''
+      ]
+    ],
+    'link' => $renderableLink
+  ];
+
+  return \Drupal::service('renderer')->render($listItem);
+}
+
+/**
+ * implement theme_menu_local_tasks
+ *
+ * @param array $variables
+ * @return string
+ */
+function application_menu_local_tasks(array &$variables) {
+  $output = '';
+
+  if (!empty($variables['primary'])) {
+    $variables['primary']['#prefix'] = '<h2 class="element-invisible">' . t('Primary tabs') . '</h2>';
+    $variables['primary']['#prefix'] .= '<ul class="tabs--primary nav nav-tabs">';
+    $variables['primary']['#suffix'] = '</ul>';
+    $output .= \Drupal::service('renderer')->render($variables['primary']);
+  }
+
+  if (!empty($variables['secondary'])) {
+    $variables['secondary']['#prefix'] = '<div class="config-menu-secondary">';
+    $variables['secondary']['#prefix'] .= '<h2 class="element-invisible">' . t('Secondary tabs') . '</h2>';
+    $variables['secondary']['#prefix'] .= '<ul class="tabs--secondary pagination pagination-sm">';
+    $variables['secondary']['#suffix'] = '</ul>';
+    $variables['secondary']['#suffix'] .= '</div>';
+    $output .= \Drupal::service('renderer')->render($variables['secondary']);
+  }
+  return $output;
+}
+
+/**
+ * Implementation of hook_preprocess_HOOK().
+ */
+function application_preprocess_html(&$variables) {
+  $userCurrent = \Drupal::currentUser();
+  if ($userCurrent->isAuthenticated()) {
+    $variables['theme_hook_suggestions'][] = 'html__userlogin';
+  }
+}
+
+/**
+ * Implementation of hook_preprocess_HOOK().
+ */
+/*
+ * function application_preprocess_breadcrumb(array &$variables)
+ * {
+ * // Do not modify breadcrumbs if the Path Breadcrumbs module should be used.
+ * if (function_exists("_bootstrap_use_path_breadcrumbs")) {
+ * if (_bootstrap_use_path_breadcrumbs()) {
+ * return;
+ * }
+ * }
+ * $breadcrumb = &$variables['breadcrumb'];
+ * // Optionally get rid of the homepage link.
+ * if (function_exists("bootstrap_setting")) {
+ * $show_breadcrumb_home = bootstrap_setting('breadcrumb_home');
+ * } else {
+ * $show_breadcrumb_home = false;
+ * }
+ * if (!$show_breadcrumb_home) {
+ * array_shift($breadcrumb);
+ * }
+ * //echo '<pre> first : '; print_r($breadcrumb); echo '</pre>';
+ * if (isset($breadcrumb) &&
+ * !\Drupal::service('router.admin_context')->isAdminRoute(\Drupal::routeMatch()->getRouteObject()))
+ * {
+ * $item = menu_get_item();
+ * #echo '<pre> menu : '; print_r($item); echo '</pre>';
+ * $page_title = !empty($item['tab_parent']) ? check_plain($item['title']) :
+ * drupal_get_title();
+ * if (!empty($page_title)) {
+ * $breadcrumb[] = array(
+ * // If we are on a non-default tab, use the tab's title.
+ * 'data' => $page_title,
+ * 'class' => array('active'),
+ * );
+ * }
+ * }
+ * if (isset($breadcrumb) && arg(0) == 'admin' && arg(1) == 'structure' &&
+ * arg(2) == 'taxonomy' && arg(4) == 'add') {
+ * $item = menu_get_item();
+ * //echo '<pre> menu : '; print_r($item['page_arguments'][2]->name); echo
+ * '</pre>';
+ * if (!empty($item['page_arguments'][2]->name)) {
+ * $title = drupal_get_title();
+ * $title .= ' ' . $item['page_arguments'][2]->name;
+ * drupal_set_title($title);
+ * }
+ * }
+ * $home = ['<a href="/">fas fa-home Accueil</a>'];
+ * $breadcrumb = array_merge($home, $breadcrumb);
+ * }
+ */
+
+/**
+ * implement hook_breadcrumb
+ *
+ * @param unknown $variables
+ */
+/*
+ * function application_breadcrumb($variables)
+ * {
+ * // Use the Path Breadcrumbs theme function if it should be used instead.
+ * if (_bootstrap_use_path_breadcrumbs()) {
+ * return path_breadcrumbs_breadcrumb($variables);
+ * }
+ * $output = '';
+ * $breadcrumb = $variables['breadcrumb'];
+ * #echo '<pre>'; print_r($breadcrumb); echo '</pre>';
+ * // Determine if we are to display the breadcrumb.
+ * $bootstrap_breadcrumb = bootstrap_setting('breadcrumb');
+ * if (($bootstrap_breadcrumb == 1 || ($bootstrap_breadcrumb == 2 && arg(0) ==
+ * 'admin')) && !empty($breadcrumb)) {
+ * $build = array(
+ * '#theme' => 'item_list__breadcrumb',
+ * '#attributes' => array(
+ * 'class' => array('breadcrumb'),
+ * ),
+ * '#items' => $breadcrumb,
+ * '#type' => 'ol',
+ * );
+ * $output = drupal_render($build);
+ * }
+ * return $output;
+ * }
+ */
+
+/**
+ *
+ * @param unknown $link_text
+ */
+function checkAvailableIcon($link_text) {
+  $icon = '';
+  if ('Voir' == $link_text) {
+    $icon = 'fas fa-eye';
+  }
+  elseif ('Modifier' == $link_text) {
+    $icon = 'far fa-edit';
+  }
+  elseif ('Structure' == $link_text) {
+    $icon = 'fab fa-buromobelexperte';
+  }
+  elseif ('Suivi' == $link_text) {
+    $icon = 'fas fa-stopwatch';
+  }
+  elseif ('Structure' == $link_text) {
+    $icon = 'fab fa-buromobelexperte';
+  }
+  elseif ('Notifications' == $link_text) {
+    $icon = 'fas fa-bell';
+  }
+  elseif ('Raccourcis' == $link_text) {
+    $icon = 'fas fa-link';
+  }
+  elseif ('Contact' == $link_text) {
+    $icon = 'fas fa-envelope-open';
+  }
+  elseif ('Utilisateurs' == $link_text) {
+    $icon = 'fas fa-users';
+  }
+  elseif ('Contenu' == $link_text) {
+    $icon = 'fas fa-clipboard-list';
+  }
+  elseif ('Site' == $link_text) {
+    $icon = 'fas fa-globe';
+  }
+  return $icon;
+}

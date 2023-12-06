@@ -1,0 +1,33 @@
+application:
+  css:
+    theme:
+      css/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css: {}
+      css/bootstrap.css: {}
+  js:
+    bootstrap/assets/javascripts/bootstrap/affix.js: {}
+    bootstrap/assets/javascripts/bootstrap/alert.js: {}
+    bootstrap/assets/javascripts/bootstrap/button.js: {}
+    bootstrap/assets/javascripts/bootstrap/carousel.js: {}
+    bootstrap/assets/javascripts/bootstrap/collapse.js: {}
+    bootstrap/assets/javascripts/bootstrap/dropdown.js: {}
+    bootstrap/assets/javascripts/bootstrap/modal.js: {}
+    bootstrap/assets/javascripts/bootstrap/tooltip.js: {}
+    bootstrap/assets/javascripts/bootstrap/popover.js: {}
+    bootstrap/assets/javascripts/bootstrap/scrollspy.js: {}
+    bootstrap/assets/javascripts/bootstrap/tab.js: {}
+    bootstrap/assets/javascripts/bootstrap/transition.js: {}
+  dependencies:
+    - core/drupal
+
+user_login:
+  css:
+    theme:
+      css/bootstrap.css: {}
+      theme-user/css/style.css: {}
+      theme-user/css/fontawesome-all.css: {}
+      css/profil.css: {}
+  js:
+    theme-user/js/canva_custom.js: {}
+    theme-user/js/canva_moving_effect.js: {}
+  dependencies:
+    - core/drupal

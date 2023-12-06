@@ -1,0 +1,41 @@
+
+
+<!DOCTYPE html>
+<html{{ html_attributes }}{{ rdf_namespaces }}>
+<head>
+ <link rel="profile" href="{{ grddl_profile }}" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'>
+ {{ head }}
+ <title>{{ head_title {% set temps =time() %}}}</title>
+ {{ styles }}
+ <style>
+  @import url("/sites/all/themes/application/theme/css/bootstrap.min.css");
+  @import url("/sites/all/themes/application/theme/css/style.css?{{ temps }}");
+  @import url("/sites/all/themes/application/theme/css/table-style.css");
+  @import url("/sites/all/themes/application/theme/css/icon-font.min.css ");
+  @import url("/sites/all/themes/application/css/style.css");
+  @import url("/sites/all/themes/application/css/accueill.css?{{ temps }}");
+  
+ </style>
+ 
+ <!-- HTML5 element support for IE6-8 -->
+ <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+ <![endif]-->
+ {{ scripts }}
+</head>
+<body{{ body_attributes }}>
+ <div id="skip-link">
+  <a href="#main-content" class="element-invisible element-focusable">{{ 'Skip to main content'|t }}</a>
+ </div>
+ {{ page_top }}
+ {{ page }}
+ {{ page_bottom }}
+ <script src="/sites/all/themes/application/theme/js/jquery.nicescroll.js"></script>
+ <script src="/sites/all/themes/application/theme/js/scripts.js"></script>
+ <script src="/sites/all/themes/application/theme/js/raphael-min.js"></script>
+ <script src="/sites/all/themes/application/theme/js/morris.js"></script>
+ <script src="/sites/all/themes/application/js/wbu.js?{{ temps }}"></script>
+</body>
+</html>

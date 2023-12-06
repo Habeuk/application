@@ -1,0 +1,166 @@
+ {# echo '<pre>'; print_r($form["name"]); echo '</pre>'; #} user
+
+
+<!--/ page-container -->
+<div class="page-container">
+	<!--/content-inner-->
+	<div class="left-content">
+		<div class="mother-grid-inner">
+			<!--header start here-->
+			<div class="header-main">
+				<div class="logo-w3-agile">
+					{% if  logo  %}
+					<a class="logo-site " href="{{ front_page }}"
+						title="{{ 'Home'|t }}"> <img src="{{ logo }}" class=""
+						alt="{{ 'Home'|t }}" />
+					</a>
+					{% endif %}
+				</div>
+				<div class="w3layouts-left">
+					{{ page.header }}
+				</div>
+				<div class="w3layouts-right">
+					<div class="profile_details_left">
+						<ul class="nofitications-dropdown">
+							<li class="dropdown head-dpdn"><a href="index.html#"
+								class="dropdown-toggle" data-toggle="dropdown"
+								aria-expanded="false"><i class="fa fa-envelope"></i><span
+									class="badge">0</span></a></li>
+							<li class="dropdown head-dpdn"><a href="index.html#"
+								class="dropdown-toggle" data-toggle="dropdown"
+								aria-expanded="false"><i class="fa fas fa-address-card"></i><span
+									class="badge">0</span></a></li>
+							<li class="dropdown head-dpdn"><a href="index.html#"
+								class="dropdown-toggle" data-toggle="dropdown"
+								aria-expanded="false"><i class="fa fas fa-comments"></i><span
+									class="badge">0</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="profile_details w3l">
+					<ul>
+						<li class="dropdown profile_details_drop">{% if  user.uid  %}
+							<a href="/user/{{ user.uid}}" class="dropdown-toggle"
+							data-toggle="dropdown" aria-expanded="false">
+								<div class="profile_img">
+									<span class="prfil-img"> {{ current_user_img }}
+									</span>
+									<div class="user-name">
+										<p>
+											{{ user.name}}
+										</p>
+
+										<span>curentRole '' {% for role, curentRole in user %}
+											role {% endfor %} {{ curentRole }}
+										</span>
+									</div>
+									<i class="fa fa-angle-down"></i> <i class="fa fa-angle-up"></i>
+									<div class="clearfix"></div>
+								</div>
+						</a> {% endif %}
+							<ul class="dropdown-menu drp-mnu">
+								<li><a href="/user"><i class="fa fas fa-cogs"></i>
+										Settings</a></li>
+								<li><a href="/user"><i class="fa fas fa-user"></i>
+										Profile</a></li>
+								<li><a href="/user/logout"><i
+										class=" fa fas fa-sign-out-alt"></i> Logout</a></li>
+							</ul></li>
+					</ul>
+				</div>
+			</div>
+			<!--header end here-->
+			<div class="header-section">
+
+				<div class="clearfix"></div>
+			</div>
+			<!-- //header-ends -->
+			<!-- /outter-wp -->
+			<div class="outter-wp">
+				{{ messages }}
+				{% if  page.highlighted  %}
+				<div class="highlighted jumbotron">
+					{{ page.highlighted }}
+				</div>
+				{% endif %}
+				<!-- /breadcrumb -->
+				<div class="sub-heard-part">
+					{% if  breadcrumb %}
+					{{ breadcrumb }}
+					{% endif %}
+					{% else %}
+					<ol class="breadcrumb m-b-0">
+						<li><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
+					</ol>
+				</div>
+				<!-- //breadcrumb -->
+				<div class="graph-visual tables-main">
+					{% if  tabs  %}
+					<div class="config-menu">
+						{{ tabs }}
+					</div>
+					{% endif %}
+					{% if  title  %}
+					<h1 class="page-header inner-tittle">
+						{{ title }}
+					</h1>
+					{% endif %}
+					{{ title_suffix }}
+					{% if  page.help  %}
+					{{ page.help }}
+					{% endif %}
+					<div>
+						{{ page.content }}
+					</div>
+				</div>
+			</div>
+			<!-- //outter-wp -->
+			<div class="copyrights">
+				<p>
+					© 2018 SOGESTI. All rights reserved | Powered by <a href="/"> <span>SOGESTI</span>
+					</a>
+				</p>
+				{% if  page.footer  %}
+				<footer class="footer {{ container_class }}">
+					{{ page.footer }}
+				</footer>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<!--//content-inner-->
+	<!--/sidebar-menu-->
+	<div class="sidebar-menu">
+		<header class="logo1">
+			<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span>
+			</a>
+		</header>
+		<div style="border-top: 1px ridge rgba(255, 255, 255, 0.15)"></div>
+
+
+		<!-- /menu -->
+		<div class="menu">
+			main_menu menu_tree_page_data('main-menu', max_depth NULL
+			only_active_trail FALSE)
+			{{ _display_menu(main_menu) }}
+
+		</div>
+		<!-- //menu -->
+
+		{% if  page.sidebar_first  %}
+		<aside role="complementary">
+			{{ page.sidebar_first }}
+		</aside>
+		<!-- /#sidebar-first -->
+		{% endif %}
+	</div>
+	<!--//sidebar-menu-->
+	{% if  page.sidebar_second  %}
+	<aside class="col-sm-3" role="complementary">
+		{{ page.sidebar_second }}
+	</aside>
+	<!-- /#sidebar-second -->
+	{% endif %}
+
+</div>
+<!--// page-container -->

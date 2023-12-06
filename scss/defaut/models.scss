@@ -1,0 +1,303 @@
+//// ******************** la police  *************************************
+@mixin policeEcriture(){
+  @font-face {
+    font-family: 'AntennaCond-Thin';
+    src: url('../scss/defaut/police/AntennaCond-Thin.otf');   
+    font-family: 'AntennaCond-ExtraLight';
+    src: url('../scss/defaut/police/AntennaCond-ExtraLight.otf'); 
+  }
+}
+
+//// ******************** general style for all pages  *************************************
+@mixin utilities(){
+  body.user-logged-in{
+    // decalage de la barre fixed, pour ne pas cacher le menu admin
+    .navbar.fixed-top{top: 80px;}
+    // metre le menu admin au dessus de tout le reste
+    #toolbar-administration{position: relative;  z-index: 9999;}
+  }
+  // limiter la taille du logo
+  .navbar-brand img.logo{max-width:150px; max-height: 50px;}
+  // les classs bootstrap ont une marge vers le bas qui altere le theme , donc on supprime cette marge dans certains conditions.
+  .views-element-container > .form-group{ margin-bottom: 0;}
+}
+
+//// ******************** general style for all pages except front-page  *************************************
+@mixin utilitiesExceptFrontPage(){
+  body:not(.path-frontpage){
+    /// pour decaler la bar fixed top
+    .navbar.fixed-top + div { margin-top: 124px;}
+    /// ajoute une separation entre le bloc menu et le reste
+    #mainNav{box-shadow: 1px 2px 1px rgba(139, 140, 140, 0.34);}
+  }
+}
+
+//// ******************** alignement vertical  *************************************
+@mixin alignementVertical($height: 100vh, $minHeight: 525px, $paddingTop: 50px, $paddingBottom: 100px ) {
+  height: $height; min-height: $minHeight; display: table;    width: 100%;
+  > div {display: table-cell;    vertical-align: middle; padding-top: $paddingTop;      padding-bottom: $paddingBottom;}
+}
+@mixin alignVerticalFlexBox($height: 95px){    display: flex;    align-items: center;    justify-content: center; min-height: $height;}
+
+//// ******************** cover bloc  *************************************
+@mixin beforeCover($bg_color: rgba(5, 12, 29, 0.4)){
+  z-index: 0;position: relative;
+  > * { position: relative;z-index: 1;}
+  &::before{
+    background-color: $bg_color;    z-index: 0;    right: 0;    bottom: 0;
+    display: block;    left: 0;    top: 0;    position: absolute;    content: '';    
+  }
+}
+
+//// ******************** triangle rectangle à droite  *************************************
+@mixin tiangleRight( $bg_color: rgba(5, 12, 29, 0.4), $bd_top_width:570px, $bd_left_width:100px ){
+  z-index: 0; position: relative;
+  &::before{
+    background-color: rgba(5, 12, 29, 0);
+    z-index: 0;
+    overflow-y: hidden;
+    right: -$bd_left_width;
+    bottom: 0;
+    display: block;
+    left: auto;
+    top: 0;
+    position: absolute;
+    width: auto;
+    height: auto;
+    border-style: solid;
+    border-width: $bd_top_width $bd_left_width 0 0;
+    border-color: $bg_color transparent transparent  transparent;
+    content: '';   
+    
+  }
+}
+ 
+//// ******************** triangle rectangle à gauche  *************************************
+@mixin tiangleLeft( $bg_color: rgba(5, 12, 29, 0.4), $bd_top_width:570px, $bd_left_width:100px ){
+  z-index: 0; position: relative;
+  &::before{
+    background-color: rgba(5, 12, 29, 0);
+    z-index: 0;
+    overflow-y: hidden;
+    right: auto;
+    bottom: 0;
+    display: block;
+    left: -$bd_left_width;
+    top: 0;
+    position: absolute;
+    width: auto;
+    height: auto;
+    border-style: solid;
+    border-width: 0 0 $bd_top_width  $bd_left_width;
+    border-color: transparent transparent $bg_color transparent;
+    content: '';   
+    
+  }
+}
+
+//// ******************** hero-image  *************************************
+@mixin heroImage(){
+  section.hero-image{ padding:0;
+    h3  {padding-top: 1.5rem;}
+    h4  {padding-top: 1rem;}
+    h4 + p {padding-left: 1.5rem;}
+    h4 { i.fa, i.fas, i.far, .glyphicon{padding-right: 0.5rem;}}
+    .herotexte, .heroimg {padding: 175px 0 50px 0;}
+    .herotexte{background: #FFF; 
+      > div{padding-left:2rem; padding-right:2rem; max-width: 1000px;text-align: justify;margin-left: auto;margin-right: auto;}
+    }
+  }
+}
+
+//// ******************** fieldset panel  *************************************
+@mixin fieldsetpanel(){
+  fieldset.panel{background-color: #f5f5f5; height: auto !important;
+    > legend{background-color: #edecec !important;    color: #757474 !important; margin-bottom: 0px !important;
+      i.fa, i.fas{font-size: 20px;    float: right;    color: #3e93e1 !important;}
+      .fa-angle-up {display:none;}
+      a[aria-expanded="true"] {
+        .fa-angle-up {display:block;} .fa-angle-down {display:none;}
+      }
+      a[aria-expanded="false"] {
+        .fa-angle-up {display:none;} .fa-angle-down {display:block;}
+      }
+    }
+          
+    > .panel-body{
+      padding-top:35px;
+    }
+  }
+  fieldset.panel.collapsed{
+    legend{margin-bottom: 20px;}
+  }
+}
+
+
+
+//// ******************** transition *************************************
+@mixin transition($property: all, $duration: .3s, $ease: linear){
+  -webkit-transition: $property $duration $ease;
+  -moz-transition: $property $duration $ease;
+  -o-transition: $property $duration $ease;
+  transition: $property $duration $ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

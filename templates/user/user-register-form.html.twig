@@ -1,0 +1,85 @@
+
+		{% set nom_site = variable_get('site_name', '') %}  
+		
+		{# #}		{% ifform.account.name%}
+		 form.account.name['#prefix']{% set = '<div class="form-style-agile">' %}
+		 form.account.name['#suffix']{% set = '</div>' %}
+		 form.account.name['#attributes']{% set = {'class'  : {' kksa888 '},
+		  'placeholder' : form.account.name["#title"],
+		 } %}
+		 form.account.name['#title']{% set = ' <i class="fas fa-user"></i> '~form.account.name['#title'] %}
+		{% endif %}
+		
+		{# #}		{% ifform.account.mail%}
+		 form.account.mail['#prefix']{% set = '<div class="form-style-agile ">' %}
+		 form.account.mail['#suffix']{% set = '</div> ' %}
+		 form.account.mail['#attributes']{% set = {'class'  : {' kksa888 '},
+		  'placeholder' : form.account.mail["#title"],
+		 } %}
+		 form.account.mail['#title']{% set = ' <i class="fas fa-unlock-alt"></i> '~form.account.mail['#title'] %}
+		{% endif %}		
+		
+		{# #}		{% ifform.account.pass.pass1%}
+		 form.account.pass.pass1['#prefix']{% set = '<div class="form-style-agile">' %}
+		 form.account.pass.pass1['#suffix']{% set = '</div> ' %}
+		 {# #}		 form.account.pass.pass2['#prefix']{% set = '<div class="form-style-agile">' %}
+		 form.account.pass.pass2['#suffix']{% set = '</div> ' %}
+		{% endif %}
+		
+  	
+		{# #}		{% set i =0 %}
+		{% set identifiant = array_keys(form) %}
+		{% for champs in identifiant %}
+		 {% ifchamps.0 and champs.1 and champs.0 == "f" and champs.1 == "i" 
+		 %}
+		  form[champs]['#prefix']{% set = '<div class="form-style-agile">' %}
+		  form[champs]['#suffix']{% set = '</div>' %}
+		  {% ifform[champs].und.0.value["#title"] %}
+		   form[champs].und.0.value['#attributes']{% set = {'class'  : {' '},
+		    {# 'placeholder' => $form[$champs]["und"][0]["value"]["#title"], #}
+		   } %}
+		  {% endif %}
+		 {% endif %}
+		 {% i = i + 1 %}
+		{% endfor %}
+  
+		{# #}		form.actions.submit['#prefix']{% set = '
+  <div class="wthree-text">
+				<ul>
+					<li>
+						<label class="anim">
+							<input type="checkbox" class="checkbox" required="">
+							<span>Stay Signed In</span>
+						</label>
+					</li>
+					<li>
+						<a href="/user"> Connectez vous !</a>
+					</li>
+				</ul>
+			</div>
+  <div class="form-item">' %}
+		form.actions.submit['#suffix']{% set = ' </div>' %}
+		form.actions.submit['#attributes']{% set = {'class'  : {' btn-primary '},
+		 {# 'placeholder' => $form["pass"]['#title'], #}
+		} %}
+  	
+
+  	
+	
+
+<div class="user-login-form-wrapper "> 
+<h2 class="title-Big">{{ ' Créer votre compte '|t }}<i class="fas fa-level-down-alt"></i></h2>
+		<div class="body">
+				<div class="content">
+						{{ drupal_render_children(form) }}
+				</div>
+		
+		</div>
+		<div class="piedbloc">
+		</div>
+		
+ 
+</div>
+
+
+

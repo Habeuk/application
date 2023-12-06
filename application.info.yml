@@ -1,0 +1,25 @@
+name: application
+type: theme
+description: "ITIETOGO Theme"
+core_version_requirement: ^9 || ^10
+base theme: bootstrap
+
+logo: logo.png
+screenshot: screenshot.png
+
+regions:
+  navigation    : 'Navigation'
+  header        : 'Top Bar'
+  highlighted   : 'Highlighted'
+  help          : 'Help'
+  content       : 'Content'
+  sidebar_first : 'Primary'
+  sidebar_second : 'Secondary'
+  footer        : 'Footer'
+  page_top      : 'Page top'
+  page_bottom   : 'Page bottom'
+# Ajout des librairies
+libraries:
+  - application/applicaton
+
+

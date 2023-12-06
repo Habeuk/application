@@ -1,0 +1,58 @@
+
+
+{# echo '<pre>'; print_r($form["name"]); echo '</pre>'; #}
+{% set nom_site = variable_get('site_name', '') %}
+{% set logoSite = '' %}
+{% iftheme_get_setting('logo') %}
+ {% set logoSite = theme('image', {'path' : theme_get_setting('logo'),'alt' : 'logo '~nom_site}) %}
+{% endif %}
+
+{# #}form.name['#prefix']{% set = '<div class="form-style-agile">' %}
+form.name['#suffix']{% set = '</div>' %}
+form.name['#attributes']{% set = {'class'  : {''},
+ 'placeholder' : form.name['#title'],
+} %}
+form.name['#title']{% set = ' <i class="fas fa-user"></i> '~form.name['#title'] %}
+{# #}form.pass['#prefix']{% set = '<div class="form-style-agile">' %}
+form.pass['#suffix']{% set = '</div>' %}
+form.pass['#attributes']{% set = {'class'  : {''},
+ 'placeholder' : form.pass['#title'],
+} %}
+form.pass['#title']{% set = ' <i class="fas fa-unlock-alt"></i> '~form.pass['#title'] %}
+{# #}form.actions.submit['#prefix']{% set = '
+  <div class="wthree-text">
+				<ul>
+					<li>
+						<label class="anim">
+							<input type="checkbox" class="checkbox" required="">
+							<span>Stay Signed In</span>
+						</label>
+					</li>
+					<li>
+						<a href="/user/password"> Mot de passe oublier ?</a>
+					</li>
+				</ul>
+			</div>
+ 
+  <div class="form-item">' %}
+form.actions.submit['#suffix']{% set = ' </div>' %}
+form.actions.submit['#attributes']{% set = {'class'  : {' btn-primary '},
+ {# 'placeholder' => $form["pass"]['#title'], #}
+} %}
+
+  	
+	
+
+
+<div class="user-login-form-wrapper"> 
+<h2 class="title-Big">{{ ' Connectez Vous '|t }}<i class="fas fa-level-down-alt"></i></h2>
+		<div class="body">
+				<div class="content">
+						{{ drupal_render_children(form) }}
+				</div>
+		
+		</div>
+		
+ 
+</div>
+

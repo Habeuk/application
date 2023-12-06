@@ -1,0 +1,34 @@
+{{ attach_library('application/user_login') }}
+{% if user.uid == 0 %}
+    {% if page.content%}
+    {{ messages }}
+    <!-- bg effect -->
+    <div id="bg">
+    	<canvas></canvas>
+    	<canvas></canvas>
+    	<canvas></canvas>
+    </div>
+    <!-- //bg effect -->
+    <div class="addfile">
+    	<a href="/custom-ajouter-les-fichiers" class="btn dtb-default "> <i
+    		class="fas fa-upload"></i> Ajouter un fichier
+    	</a>
+    </div>
+    <div class="infos-tilte">
+    	<h1 class="title-h1">
+    		<a href="/"> <img class="img-fluid" src="{{ logopath }}" alt="{{ site_name }}"> </a>
+    	</h1>
+    	<p>Système Intégré de Gestion des Ressources Extractives</p>
+    </div>
+    <div class="sub-main-w3">
+    	{{ page.content }}
+    </div>
+    <div class="footer">
+    	<p>
+    		© 2018 SOGESTI. All rights reserved | Powered by <a href="/"> <span>SOGESTI</span>
+    		</a>
+    	</p>
+    </div>
+    {% endif %}
+{% endif %}
+{# #}

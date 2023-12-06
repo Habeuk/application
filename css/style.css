@@ -1,0 +1,399 @@
+body.logged-in.admin-menu .sidebar-menu {
+  margin-top: 47px;
+  z-index: 2; }
+  body.logged-in.admin-menu .slicknav_menu {
+    z-index: 99;
+    position: relative; }
+
+img {
+  max-width: 100%; }
+
+.logo-site img {
+  max-height: 50px; }
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+  background-color: #2f72c3;
+  border-color: #2f72c3; }
+
+.user-name {
+  height: auto; }
+
+.more-link {
+  padding-top: 25px; }
+
+body {
+  min-height: 300px;
+  overflow: hidden;
+  /*
+   #admin-menu::before{display: block;background-color: rgba(5, 12, 29, 0.6);
+   z-index: 50;
+   left: 0;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   position: absolute;
+   content: '';}
+   */ }
+  body > .page-container {
+    display: inline-block;
+    min-width: 100%; }
+  body .well {
+    padding: 0;
+    background: transparent;
+    box-shadow: 0 0 0 #000;
+    border-radius: 0px;
+    border: 0px solid; }
+    body .well .block-title {
+      font-size: 16px;
+      padding: 0 10px;
+      font-weight: 700;
+      color: #6b6a6a; }
+  body a.tooltips:hover span {
+    width: auto;
+    padding: 0 10px;
+    white-space: nowrap;
+    margin-left: 0;
+    left: -210%;
+    display: block;
+    margin-left: 0; }
+  body #admin-menu div .toolbar-shortcuts {
+    display: none; }
+  body #admin-menu > div > .dropdown > li > a {
+    padding: 2px 8px 3px; }
+  body .header-main {
+    display: inline-block;
+    width: 100%; }
+    body .header-main form.form-search .input-group {
+      padding: 0; }
+    body .header-main .form-actions.form-wrapper {
+      display: none; }
+    body .header-main > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 85px; }
+      body .header-main > div > div {
+        width: 100%; }
+    body .header-main .nofitications-dropdown li {
+      float: none; }
+      body .header-main .nofitications-dropdown li a {
+        margin: 0 !important;
+        margin-right: 45% !important; }
+    body .header-main .profile_details.w3l, body .header-main .w3layouts-right {
+      padding-left: 0;
+      padding-right: 0; }
+      body .header-main .profile_details.w3l > ul, body .header-main .w3layouts-right > ul {
+        width: 100%; }
+    body .header-main .w3layouts-left input[name="search_block_form"] {
+      border-color: #fff; }
+      body .header-main .w3layouts-left span.input-group-btn {
+        border-color: #fff;
+        border: 1px solid #fff; }
+        body .header-main .w3layouts-left span.input-group-btn button {
+          height: 34px;
+          background-color: #f69502; }
+    body .header-main .profile_details > * {
+      padding: 0 10px; }
+      body .header-main .profile_details li a i.fa {
+        right: 0%; }
+  body .input-group .form-control {
+    height: 36px; }
+  body .region-content > .block {
+    margin-top: 2em;
+    background-color: #fff;
+    padding: 2em;
+    border-radius: 0;
+    margin: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    -o-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2em; }
+  body .page-header {
+    padding: 20px 30px;
+    margin: 0;
+    margin-top: 40px;
+    background-color: #fff; }
+  body .config-menu + .page-header {
+    margin-top: 0px; }
+  body .config-menu {
+    margin-top: 40px;
+    display: table;
+    width: 100%; }
+    body .config-menu .nav-tabs {
+      float: right; }
+    body .config-menu .config-menu-secondary {
+      display: inline-block;
+      width: 100%;
+      background-color: #f7f7f7; }
+      body .config-menu .config-menu-secondary > ul {
+        margin: 0;
+        float: right; }
+  body .icon-after.icon.glyphicon {
+    float: right; }
+  body .page-container.sidebar-collapsed .menupooledamin li i {
+    float: none !important; }
+    body .page-container.sidebar-collapsed .block-title {
+      display: none; }
+  body fieldset.panel {
+    background-color: #f5f5f5;
+    height: auto !important; }
+    body fieldset.panel > legend {
+      background-color: #edecec !important;
+      color: #757474 !important;
+      margin-bottom: 0px !important; }
+      body fieldset.panel > legend i.fa, body fieldset.panel > legend i.fas {
+        font-size: 20px;
+        float: right;
+        color: #3e93e1 !important; }
+      body fieldset.panel > legend .fa-angle-up {
+        display: none; }
+      body fieldset.panel > legend a[aria-expanded="true"] .fa-angle-up {
+        display: block; }
+        body fieldset.panel > legend a[aria-expanded="true"] .fa-angle-down {
+          display: none; }
+      body fieldset.panel > legend a[aria-expanded="false"] .fa-angle-up {
+        display: none; }
+        body fieldset.panel > legend a[aria-expanded="false"] .fa-angle-down {
+          display: block; }
+    body fieldset.panel > .panel-body {
+      padding-top: 35px; }
+  body fieldset.panel.collapsed legend {
+    margin-bottom: 20px; }
+  body .four-grids > .four-grid > div {
+    box-shadow: 0px 0px 0px #b1b1b1;
+    -webkit-transition: box-shadow 0.1s linear;
+    -moz-transition: box-shadow 0.1s linear;
+    -o-transition: box-shadow 0.1s linear;
+    transition: box-shadow 0.1s linear; }
+  body .four-grids > .four-grid:hover > div {
+    box-shadow: 7px 8px 10px #b1b1b1; }
+  body .nav > li > a {
+    padding: 15px 15px 10px 15px; }
+  body .view-content table th {
+    background: #1b93e1 !important;
+    color: #fff !important;
+    text-transform: uppercase; }
+    body .view-content table th a {
+      color: #f5d8b1;
+      font-weight: 700; }
+      body .view-content table th a .icon {
+        color: #fff; }
+    body .view-content table td.views-field.active em {
+      color: black; }
+    body .view-content table tr:hover {
+      opacity: 0.8;
+      box-shadow: -1px 0px 1px #ccc; }
+    body .view-content table thead tr:first-child:hover {
+      opacity: 1;
+      box-shadow: 0px 0px 0px #ccc; }
+  body .sidebar-menu.scroll {
+    position: absolute; }
+  body .burgeurAdmin {
+    font-size: 1.5em;
+    padding: 2px 20px 0 20px;
+    color: #fff;
+    float: left;
+    cursor: pointer; }
+  body .element-invisible {
+    display: none;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 0;
+    width: 0; }
+
+.page-custom-ajouter-les-fichiers .form-managed-file .input-group-btn:last-child > .btn {
+  display: none !important; }
+
+#admin-menu-wrapper ul.dropdown {
+  width: auto; }
+
+header.logo {
+  display: inline-block;
+  width: 100%; }
+  header.logo .logo-site {
+    max-width: 150px;
+    display: inline-block;
+    float: left; }
+
+.down a img {
+  display: inline-block;
+  max-width: 80px;
+  max-height: 80px; }
+
+.contentLogo {
+  margin: 30px 0; }
+
+h1.inner-tittle {
+  margin-bottom: 0px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ddd; }
+
+body.page-admin .admin-list > dd + dt {
+  margin-top: 20px; }
+  body.page-admin .page-header {
+    margin-bottom: 0; }
+  body.page-admin .form-inline .form-control {
+    height: 36px; }
+  body.page-admin table th {
+    background: #1b93e1 !important;
+    color: #fff !important;
+    text-transform: uppercase; }
+    body.page-admin table th a {
+      color: #f5d8b1;
+      font-weight: 700; }
+    body.page-admin table th a .icon {
+      color: #fff; }
+    body.page-admin table td.views-field.active em {
+      color: black; }
+    body.page-admin table tr:hover {
+      opacity: 0.8;
+      box-shadow: -1px 0px 1px #ccc; }
+    body.page-admin table thead tr:first-child:hover {
+      opacity: 1;
+      box-shadow: 0px 0px 0px #ccc; }
+  body.page-admin .table {
+    border: 0px solid #e0e0e0; }
+    body.page-admin .table th, body.page-admin .table td {
+      padding: 10px 12px !important;
+      border: none;
+      border-bottom: 1px solid #e8e8e8;
+      font-size: 0.95em; }
+    body.page-admin .table td {
+      background: #f3faff;
+      color: #424242; }
+    body.page-admin .table tr:nth-of-type(2n+2) td {
+      background: #fff; }
+  body.page-admin .admin.my-workbench > div.left, body.page-admin .admin.my-workbench > div.right {
+    display: block;
+    width: 100%;
+    float: none; }
+    body.page-admin .admin.my-workbench > div {
+      margin-bottom: 30px; }
+    body.page-admin .admin.my-workbench > div h3 {
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+      margin-bottom: 15px; }
+    body.page-admin .admin.my-workbench > div .user-picture img {
+      border-radius: 50%;
+      border: 2px solid #efefef;
+      max-width: 150px; }
+    body.page-admin .admin.my-workbench > div table {
+      margin-top: 0; }
+    body.page-admin .admin.my-workbench > div .view-header {
+      font-style: italic; }
+  body.page-admin .ui-widget-overlay {
+    opacity: 0.5;
+    background: #000; }
+  body.page-admin .view-workbench-current-user .views-field {
+    float: left; }
+    body.page-admin .view-workbench-current-user .views-field.views-field-nothing {
+      padding: 20px 30px; }
+    body.page-admin .view-workbench-current-user .views-field.views-field-nothing .field-content {
+      display: block; }
+    body.page-admin .view-workbench-current-user .views-field.views-field-nothing .field-content > div {
+      margin-bottom: 10px; }
+
+body.overlay #overlay-content .header-main {
+  display: none; }
+
+.form-horizontal .form-group {
+  margin-left: 0px;
+  margin-right: 0px; }
+
+.form-horizontal > .form-group {
+  margin-left: -15px;
+  margin-right: -15px; }
+
+article.node .block-page > div.field {
+  margin-bottom: 20px; }
+  article.node .block-page .field-label {
+    padding-top: 0px;
+    padding-bottom: 3px; }
+
+.map {
+  margin: 0;
+  padding: 0; }
+
+@media (min-width: 641px) {
+  ul.menupooledamin > li > a {
+    white-space: normal; }
+    ul.menupooledamin > li > a i + span {
+      display: block;
+      padding-left: 24px; }
+    ul.menupooledamin > li > a i {
+      float: none;
+      position: absolute;
+      top: 30%; }
+
+  .page-container.sidebar-collapsed .menupooledamin li > a i {
+    position: relative; } }
+
+@media (min-width: 1025px) {
+  body.logged-in.admin-menu .sidebar-menu {
+    margin-top: 39px; }
+    body.logged-in.admin-menu .left-content {
+      margin-top: 10px; } }
+
+@media (max-width: 1280px) and (min-width: 1025px) {
+  .left-content, .page-container.sidebar-collapsed-back .left-content {
+    width: 80%; }
+    .left-content .user-name, .page-container.sidebar-collapsed-back .left-content .user-name {
+      position: absolute;
+      margin-left: 28%;
+      top: 0;
+      bottom: 0; } }
+
+@media (max-width: 736px) {
+  body.logged-in.admin-menu .sidebar-menu {
+    margin-top: 0px; } }
+
+@media (max-width: 640px) {
+  body .well .block-title {
+    opacity: 0;
+    transition: all 50ms linear;
+    display: none;
+    margin-left: 10px; }
+
+  .menupooledamin span {
+    display: none; }
+
+  .header-main .w3layouts-right .nofitications-dropdown > li {
+    padding-right: 5%; }
+
+  ul.menupooledamin i {
+    float: none; }
+
+  .page-container.sidebar-collapsed .menupooledamin span {
+    position: relative !important; }
+    .page-container.sidebar-collapsed .menupooledamin span span.fa {
+      padding-left: 15px; } }
+
+@media (max-width: 575px) {
+  #admin-menu-wrapper #admin-menu-menu > li {
+    width: auto;
+    display: inline-block;
+    width: 100%;
+    float: none !important;
+    position: relative; }
+    #admin-menu-wrapper #admin-menu-menu > li > a {
+      padding: 10px 20px !important;
+      border-radius: 0px; }
+    #admin-menu-wrapper #admin-menu-menu > li > a.active-trail, #admin-menu-wrapper #admin-menu-menu > li > a.active {
+      background: rgba(44, 50, 90, 0.3); }
+    #admin-menu-wrapper #admin-menu-menu > li ul {
+      top: 0;
+      margin-left: 150px; }
+      #admin-menu-wrapper #admin-menu-menu > li ul li {
+        background: #526c82 !important; } }
+
+@media (max-width: 384px) {
+  .left-content {
+    width: 83%;
+    padding: 0 1em; }
+
+  .left-content .outter-wp {
+    padding: 0; }
+
+  .page-container.sidebar-collapsed .sidebar-menu {
+    width: 85%; } }

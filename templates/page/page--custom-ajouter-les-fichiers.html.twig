@@ -1,0 +1,26 @@
+
+{% set logoSite = '' %}
+{% set nom_site = variable_get('site_name', '') %}
+{% iftheme_get_setting('logo') %}
+ {% set logoSite = theme('image', {'path' : theme_get_setting('logo'),'alt' : 'logo '~nom_site}) %}
+{% endif %}
+
+<section class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="contentLogo">
+				<a href="/">{{ logoSite }}</a>
+				<p>Système Intégré de Gestion des Ressources Extractives</p>
+			</div>
+		</div>
+		<div class="col-sm-12">
+			{{ messages }}
+			{{ page.content }}
+			<!-- //outter-wp -->
+			<div class="copyrights">
+	 			<p>© 2018 SOGESTI. All rights reserved | Powered by <a href="/"> <span>SOGESTI</span> </a> </p>
+			</div>
+			
+		</div>
+	</div>	
+</section>
