@@ -1,0 +1,4 @@
+application.twig.extension:
+  class: Drupal\application\Twig\RenderMenuExtension
+  tags:
+    - { name: twig.extension }

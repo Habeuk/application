@@ -152,8 +152,7 @@ function application_preprocess_page(&$variables) {
   // }
   // $parameters = new MenuTreeParameters();
   // $parameters->setMinDepth(2)->setMaxDepth(4)->onlyEnabledLinks();
-  // $variables["display_menu"] = _display_menu($page_data =
-  // \Drupal::service('toolbar.menu_tree')->load('main_menu', $parameters));
+   $variables["display_menu"] = _display_menu("main");
   // new
   $variables['logopath'] = theme_get_setting('logo.url');
   $site_config = \Drupal::config('system.site');
@@ -229,6 +228,40 @@ function application_preprocess_form_element($vars) {
 /**
  */
 function _display_menu($main_menu, $depth = 0) {
+
+  $menu_tree = \Drupal::menuTree();
+  $parameters = new MenuTreeParameters();
+
+  // Build the typical default set of menu tree parameters.
+  $parameters = $menu_tree->getCurrentRouteMenuTreeParameters($main_menu);
+
+  // Load the tree based on this set of parameters.
+  $tree = $menu_tree->load($main_menu, $parameters);
+
+  // Transform the tree using the manipulators you want.
+  $manipulators = array(
+      // Only show links that are accessible for the current user.
+      array('callable' => 'menu.default_tree_manipulators:checkAccess'),
+      // Use the default sorting of menu links.
+      array('callable' => 'menu.default_tree_manipulators:generateIndexAndSort'),
+  );
+  $tree = $menu_tree->transform($tree, $manipulators);
+
+  // Finally, build a renderable array from the transformed tree.
+  $menu = $menu_tree->build($tree);
+  $sub_menu_class = 'menupooledamin';
+  $id = 'menu';
+  if ($depth) {
+    $sub_menu_class = 'sub-menu';
+    $id = null;
+  }
+  
+  $menu['#attributes']['class'] = $sub_menu_class;
+
+  return ['#markup' => \Drupal::service('renderer')->render($menu)];
+
+
+
   # echo '<pre>'; var_dump($depth); var_dump(count($main_menu) ); echo '</pre>';
   // $filename='debug-menu_'.time();
   // displayVarLogstheme($main_menu, $filename);

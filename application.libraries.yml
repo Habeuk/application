@@ -3,6 +3,7 @@ application:
     theme:
       css/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css: {}
       css/bootstrap.css: {}
+      css/style.css: {}
   js:
     bootstrap/assets/javascripts/bootstrap/affix.js: {}
     bootstrap/assets/javascripts/bootstrap/alert.js: {}
