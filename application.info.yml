@@ -20,6 +20,6 @@ regions:
   page_bottom   : 'Page bottom'
 # Ajout des librairies
 libraries:
-  - application/sfds
+  - application/application
 
 
