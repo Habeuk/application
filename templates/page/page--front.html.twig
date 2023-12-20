@@ -52,38 +52,15 @@
  */
 #}
 
-{{ attach_library('application/application') }}
+{{ attach_library('application/accueil') }}
 {% set container = '' %}
 
 
 {# Main #}
 {% block main %}
-
-
-	<div class="sidebar-menu">
-		<header class="logo1">
-			<a href="#" class="sidebar-icon">
-				<span class="fa fa-bars"></span>
-			</a>
-		</header>
-		<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
-
-
-		<div class="menu">
-			{{ display_menu }}
-		</div>
-
-		{% if page.sidebar_first %}
-			<aside role="complementary">
-				{{ page.sidebar_first }}
-			</aside>
-			<!-- /#sidebar-first -->
-		{% endif %}
-	</div>
-	<div role="main" class="main-container {{ container }} js-quickedit-main-content">
-		<div
-			class="">
-
+<div class="page-container">
+	<div class="left-content">
+		<div class="mother-grid-inner">
 			{# Header #}
 			{% if page.header %}
 				{% block header %}
@@ -146,14 +123,34 @@
 					</aside>
 				{% endblock %}
 			{% endif %}
+		<div class="copyrights bg-white">
+        	<p>© 2018 SOGESTI. All rights reserved | Powered by
+        		<a href="/">
+        			<span>SOGESTI</span>
+        		</a>
+        	</p>
+        </div>
 		</div>
 	</div>
-{% endblock %}
+	<div class="sidebar-menu">
+		<header class="logo1">
+			<a href="#" class="sidebar-icon">
+				<span class="fa fa-bars"></span>
+			</a>
+		</header>
+		<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
 
-<div class="copyrights bg-white">
-	<p>© 2018 SOGESTI. All rights reserved | Powered by
-		<a href="/">
-			<span>SOGESTI</span>
-		</a>
-	</p>
+
+		<div class="menu">
+			{{ page.menu_main }}
+		</div>
+
+		{% if page.sidebar_first %}
+			<aside role="complementary">
+				{{ page.sidebar_first }}
+			</aside>
+			<!-- /#sidebar-first -->
+		{% endif %}
+	</div>
 </div>
+{% endblock %}

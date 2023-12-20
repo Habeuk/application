@@ -28,8 +28,7 @@ body.page-user .help-block {
   body.page-user .footer {
     border-top: 0px solid;
     padding: 0; }
-  body.page-user .form-actions .form-item > button {
-    width: auto;
+  body.page-user .form-actions .form-item  button {
     width: auto;
     padding-left: 6.3%;
     padding-right: 6.3%;

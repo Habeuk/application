@@ -1,7 +1,11 @@
 application:
   css:
     theme:
-      css/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css: {}
+      node_modules/@fortawesome/fontawesome-free/css/all.css: {}
+      theme/css/bootstrap.min.css: {}
+      theme/css/style.css: {}
+      theme/css/table-style.css: {}
+      theme/css/icon-font.min.css: {}
       css/style.css: {}
   js:
     js/jquery-3.7.1.min.js: {}
@@ -9,12 +13,19 @@ application:
   dependencies:
     - core/drupal
 
+
+accueil:
+  css:
+    theme:
+      css/accueill.css: {}
+      
+      
 user_login:
   css:
     theme:
+      node_modules/@fortawesome/fontawesome-free/css/all.css: {}
       css/bootstrap.css: {}
       theme-user/css/style.css: {}
-      theme-user/css/fontawesome-all.css: {}
       css/profil.css: {}
   js:
     theme-user/js/canva_custom.js: {}

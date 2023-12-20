@@ -20,9 +20,9 @@ function application_theme(&$existing, $type, $theme, $path) {
     'render element' => 'form',
     'path' => \Drupal::service('extension.path.resolver')->getPath('theme', 'application') . '/templates/user',
     'template' => 'user-register-form',
-    'preprocess functions' => array(
+    'preprocess functions' => [
       'application_preprocess_user_register_form'
-    )
+    ]
   );
   // ///////
   $items['user_login'] = array(
@@ -44,6 +44,21 @@ function application_theme(&$existing, $type, $theme, $path) {
   );
 
   return $items;
+}
+
+/**
+ * implement hook_page_attachments_alter
+ *
+ * @param array $attachments
+ */
+function application_page_attachments_alter(array &$attachments) {
+  $uid = \Drupal::currentUser()->id();
+  if ($uid) {
+    $attachments["#attached"]["library"][] = "application/application";
+  }
+  else {
+    $attachments["#attached"]["library"][] = "application/user_login";
+  }
 }
 
 function application_preprocess_user_register_form(&$vars) {
@@ -152,12 +167,27 @@ function application_preprocess_page(&$variables) {
   // }
   // $parameters = new MenuTreeParameters();
   // $parameters->setMinDepth(2)->setMaxDepth(4)->onlyEnabledLinks();
-   $variables["display_menu"] = _display_menu("main");
+  // $variables["display_menu"] = _display_menu("main");
   // new
   $variables['logopath'] = theme_get_setting('logo.url');
   $site_config = \Drupal::config('system.site');
   $variables['site_name'] = $site_config->get('name');
   $variables['site_slogan'] = $site_config->get('slogan');
+}
+
+function application_form_alter(&$form, &$form_state, $form_id) {
+  $form['#prefix'] = '<div class="block">';
+  $form['#suffix'] = '</div>';
+}
+
+/**
+ *
+ * @param array $variables
+ */
+function application_preprocess_menu__main($variables) {
+  foreach ($variables['items'] as &$item) {
+    //
+  }
 }
 
 function application_form_user_login_form_alter(&$form, &$form_state, $form_id) {
@@ -168,8 +198,8 @@ function application_form_user_login_form_alter(&$form, &$form_state, $form_id) 
   $form['pass']['#suffix'] = '</div>';
 
   // dump($form['actions']);
-  $form['actions']['#prefix'] = '<div class="form-item">';
-  $form['actions']['#suffix'] = '</div>';
+  $form['actions']['#prefix'] = '<div class="form-actions form-wrapper form-group"> <div class="form-item">';
+  $form['actions']['#suffix'] = '</div></div>';
   $form['actions']['submit']['#attributes'] = [
     'class' => [
       'btn',
@@ -180,7 +210,7 @@ function application_form_user_login_form_alter(&$form, &$form_state, $form_id) 
   $form['header_title'] = [
     '#type' => 'html_tag',
     '#tag' => 'h2',
-    '#value' => 'Connectez Vous',
+    '#value' => ' Connectez Vous ',
     '#weight' => -10,
     '#attributes' => [
       'class' => [
@@ -198,13 +228,70 @@ function application_form_user_login_form_alter(&$form, &$form_state, $form_id) 
       ]
     ]
   ];
-
+  // dump($form['name']);
+  // add place holser
+  $form['name']['#attributes']['placeholder'] = $form['name']['#title'];
+  $form['pass']['#attributes']['placeholder'] = $form['pass']['#title'];
+  // add icon in name.
+  $form['name']['#title'] = [
+    [
+      '#type' => 'html_tag',
+      '#tag' => 'i',
+      '#attributes' => [
+        'class' => [
+          'fas fa-user'
+        ]
+      ]
+    ],
+    [
+      '#markup' => $form['name']['#title']
+    ]
+  ];
+  // add icon in pass.
+  $form['pass']['#title'] = [
+    [
+      '#type' => 'html_tag',
+      '#tag' => 'i',
+      '#attributes' => [
+        'class' => [
+          'fas fa-unlock-alt'
+        ]
+      ]
+    ],
+    [
+      '#markup' => $form['pass']['#title']
+    ]
+  ];
+  $form['custom_html'] = [
+    '#markup' => '<div class="wthree-text">
+				<ul>
+					<li>
+						<label class="anim">
+							<input type="checkbox" class="checkbox" required="">
+							<span>Stay Signed In</span>
+						</label>
+					</li>
+					<li>
+						<a href="/user/password"> Mot de passe oublier ?</a>
+					</li>
+				</ul>
+			</div>',
+    '#allowed_tags' => [
+      'input',
+      'ul',
+      'li',
+      'label',
+      'div',
+      'a'
+    ]
+  ];
   $form['container_div'] = [
     '#theme' => 'container',
     '#children' => [
       $form['header_title'],
       $form['name'],
       $form['pass'],
+      $form['custom_html'],
       $form['actions']
     ],
     '#weight' => -10
@@ -213,6 +300,7 @@ function application_form_user_login_form_alter(&$form, &$form_state, $form_id) 
   unset($form['name']);
   unset($form['pass']);
   unset($form['actions']);
+  unset($form['custom_html']);
   // dump($form);
 }
 
@@ -228,7 +316,6 @@ function application_preprocess_form_element($vars) {
 /**
  */
 function _display_menu($main_menu, $depth = 0) {
-
   $menu_tree = \Drupal::menuTree();
   $parameters = new MenuTreeParameters();
 
@@ -240,10 +327,14 @@ function _display_menu($main_menu, $depth = 0) {
 
   // Transform the tree using the manipulators you want.
   $manipulators = array(
-      // Only show links that are accessible for the current user.
-      array('callable' => 'menu.default_tree_manipulators:checkAccess'),
-      // Use the default sorting of menu links.
-      array('callable' => 'menu.default_tree_manipulators:generateIndexAndSort'),
+    // Only show links that are accessible for the current user.
+    array(
+      'callable' => 'menu.default_tree_manipulators:checkAccess'
+    ),
+    // Use the default sorting of menu links.
+    array(
+      'callable' => 'menu.default_tree_manipulators:generateIndexAndSort'
+    )
   );
   $tree = $menu_tree->transform($tree, $manipulators);
 
@@ -255,12 +346,12 @@ function _display_menu($main_menu, $depth = 0) {
     $sub_menu_class = 'sub-menu';
     $id = null;
   }
-  
+
   $menu['#attributes']['class'] = $sub_menu_class;
 
-  return ['#markup' => \Drupal::service('renderer')->render($menu)];
-
-
+  return [
+    '#markup' => \Drupal::service('renderer')->render($menu)
+  ];
 
   # echo '<pre>'; var_dump($depth); var_dump(count($main_menu) ); echo '</pre>';
   // $filename='debug-menu_'.time();

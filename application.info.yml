@@ -12,14 +12,15 @@ regions:
   header        : 'Top Bar'
   highlighted   : 'Highlighted'
   help          : 'Help'
+  menu_main     : 'Main menu'
   content       : 'Content'
-  sidebar_first : 'Primary'
-  sidebar_second : 'Secondary'
+  sidebar_first : 'Side bar first'
+  sidebar_second : 'side bar second'
   footer        : 'Footer'
   page_top      : 'Page top'
   page_bottom   : 'Page bottom'
-# Ajout des librairies
-libraries:
-  - application/application
+# On charge les librairies de manieres dynamiques.
+# libraries:
+#  - application/application
 
 

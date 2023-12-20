@@ -51,43 +51,19 @@
  * @see html.html.twig
  */
 #}
-{{ attach_library('application/application') }}
+
 {% set container = '' %}
 
 
 {# Main #}
 {% block main %}
-
-	<div class="sidebar-menu">
-		<header class="logo1">
-			<a href="#" class="sidebar-icon">
-				<span class="fa fa-bars"></span>
-			</a>
-		</header>
-		<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
-
-
-		<div class="menu">
-			{{ display_menu }}
-		</div>
-
-		{% if page.sidebar_first %}
-			<aside role="complementary">
-				{{ page.sidebar_first }}
-			</aside>
-			<!-- /#sidebar-first -->
-		{% endif %}
-	</div>
-	<div role="main" class="main-container {{ container }} js-quickedit-main-content">
-		<div
-			class="row">
-
+<div class="page-container">
+	<div class="left-content">
+		<div class="mother-grid-inner">
 			{# Header #}
 			{% if page.header %}
 				{% block header %}
-					<div class="col-sm-12" role="heading">
-						{{ page.header }}
-					</div>
+					{{ page.header }}
 				{% endblock %}
 			{% endif %}
 
@@ -96,11 +72,11 @@
         set content_classes = [
           page.sidebar_first and page.sidebar_second ? 'col-sm-6',
           page.sidebar_first and page.sidebar_second is empty ? 'col-sm-12',
-          page.sidebar_second and page.sidebar_first is empty ? 'col-sm-9',
+          page.sidebar_second and page.sidebar_first is empty ? 'col-sm-12',
           page.sidebar_first is empty and page.sidebar_second is empty ? 'col-sm-12'
         ]
       %}
-			<section{{content_attributes.addClass(content_classes)}}>
+			<section{{content_attributes}}>
 
 				{# Highlighted #}
 				{% if page.highlighted %}
@@ -116,12 +92,14 @@
 					{% endblock %}
 				{% endif %}
 
+
 				{# Content #}
 				{% block content %}
 					<a id="main-content"></a>
 					{{ page.content }}
 				{% endblock %}
 			</section>
+
 
 			{# Sidebar Second #}
 			{% if page.sidebar_second %}
@@ -131,14 +109,34 @@
 					</aside>
 				{% endblock %}
 			{% endif %}
+		<div class="copyrights bg-white">
+        	<p>© 2018 SOGESTI. All rights reserved | Powered by
+        		<a href="/">
+        			<span>SOGESTI</span>
+        		</a>
+        	</p>
+        </div>
 		</div>
 	</div>
-{% endblock %}
+	<div class="sidebar-menu">
+		<header class="logo1">
+			<a href="#" class="sidebar-icon">
+				<span class="fa fa-bars"></span>
+			</a>
+		</header>
+		<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
 
-{% if page.footer %}
-	{% block footer %}
-		<footer class="footer {{ container }}" role="contentinfo">
-			{{ page.footer }}
-		</footer>
-	{% endblock %}
-{% endif %}
+
+		<div class="menu">
+			{{ page.menu_main }}
+		</div>
+
+		{% if page.sidebar_first %}
+			<aside role="complementary">
+				{{ page.sidebar_first }}
+			</aside>
+			<!-- /#sidebar-first -->
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

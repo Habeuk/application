@@ -73,7 +73,8 @@
     node.isSticky() ? 'is-sticky',
     not node.isPublished() ? 'is-unpublished',
     view_mode ? view_mode|clean_class,
-    'clearfix',
+    'clearfix',    
+    view_mode == 'full'? 'block'
   ]
 %}
 <article{{attributes.addClass(classes)}}>
