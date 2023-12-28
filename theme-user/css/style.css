@@ -223,6 +223,9 @@ body {
     font-size: 100%;
     background: #2196F3;
 }
+.text-white{
+	color:#fff !important;
+}
 
 /*--header--*/
 

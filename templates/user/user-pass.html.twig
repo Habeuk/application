@@ -1,25 +1,10 @@
+<h2 class="title-Big">
+	{{ 'Réinitialiser votre mot de passe'|t }}
+	<i class="fas fa-level-down-alt"></i>
+</h2>
+<div class="user-login-form-wrapper password">
+	<div class="body">
+		<div class="content text-white">{{ form }} </div>
 
-		{% set nom_site = variable_get('site_name', '') %}
-		{% set tabs_login = menu_local_tasks() %}
-		{# echo '<pre>'; print_r($form['name']); echo '</pre>';
-		 #}		form.name['#prefix']{% set = '<div class="form-style-agile">' %}
-		form.name['#suffix']{% set = '</div>' %}
-		form.name['#attributes']{% set = {'class'  : {''},
-		 'placeholder' : form.name['#title'],
-		} %}
-		form.name['#title']{% set = ' <i class="fas fa-user"></i> '~form.name['#title'] %}
-		{# #}		form.actions.submit['#prefix']{% set = '<div class="form-item">' %}
-		form.actions.submit['#suffix']{% set = ' </div>' %}
-  	
-	
-<h2 class="title-Big">{{ 'Réinitialiser votre mot de passe'|t }}<i class="fas fa-level-down-alt"></i></h2>
-<div class="user-login-form-wrapper password"> 
-		<div class="body">
-				<div class="content">
-						{{ drupal_render_children(form) }}
-				</div>
-		
-		</div>
-		
- 
+	</div>
 </div>

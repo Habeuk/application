@@ -1,15 +1,9 @@
-
-{% set logoSite = '' %}
-{% set nom_site = variable_get('site_name', '') %}
-{% iftheme_get_setting('logo') %}
- {% set logoSite = theme('image', {'path' : theme_get_setting('logo'),'alt' : 'logo '~nom_site}) %}
-{% endif %}
-
+{{ dump() }}
 <section class="container">
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="contentLogo">
-				<a href="/">{{ logoSite }}</a>
+				<a href="/"> <img class="img-fluid" src="{{ logopath }}" alt="{{ site_name }}"> </a>
 				<p>Système Intégré de Gestion des Ressources Extractives</p>
 			</div>
 		</div>

@@ -61,21 +61,23 @@ function application_page_attachments_alter(array &$attachments) {
   }
 }
 
-function application_preprocess_user_register_form(&$vars) {
-  // displayVarLogstheme($vars['form']['account'],
-  // $filename='preprocess_user_register_form');
-}
+// function application_preprocess_user_register_form(&$vars) {
+// // displayVarLogstheme($vars['form']['account'],
+// // $filename='preprocess_user_register_form');
+// }
 
-function application_preprocess_user_login(&$vars) {
-}
+// function application_preprocess_user_login(&$vars) {
+// }
 
-function application_preprocess_user_pass(&$vars) {
-  $vars['intro_text'] = t('This is my super awesome request new password form');
-}
+// function application_preprocess_user_pass(&$vars) {
+// $vars['intro_text'] = t('This is my super awesome request new password
+// form');
+// }
 
-function application_preprocess_node_product_node_form(&$vars) {
-  $vars['intro_text'] = t('This is my super awesome request new password form');
-}
+// function application_preprocess_node_product_node_form(&$vars) {
+// $vars['intro_text'] = t('This is my super awesome request new password
+// form');
+// }
 
 /**
  * load scss csss
@@ -285,17 +287,27 @@ function application_form_user_login_form_alter(&$form, &$form_state, $form_id) 
       'a'
     ]
   ];
+  // $form['container_div'] = [
+  // '#theme' => 'container',
+  // '#children' => [
+  // $form['header_title'],
+  // $form['name'],
+  // $form['pass'],
+  // $form['custom_html'],
+  // $form['actions']
+  // ],
+  // '#weight' => -10
+  // ];
   $form['container_div'] = [
-    '#theme' => 'container',
-    '#children' => [
-      $form['header_title'],
-      $form['name'],
-      $form['pass'],
-      $form['custom_html'],
-      $form['actions']
-    ],
-    '#weight' => -10
+    "#type" => 'html_tag',
+    '#tag' => 'div',
+    'header_title' => $form['header_title'],
+    'name' => $form['name'],
+    'pass' => $form['pass'],
+    'custom_html' => $form['custom_html'],
+    'actions' => $form['actions']
   ];
+
   unset($form['header_title']);
   unset($form['name']);
   unset($form['pass']);
