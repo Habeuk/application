@@ -325,7 +325,7 @@ h2 {
     background: #fff;
 }
 
-.sub-main-w3 input[type="submit"], .form-actions .form-item  button {
+.sub-main-w3 [type="submit"], .form-actions .form-item  button {
     color: #fff;
     background: #f7296f;
     border: none;
@@ -344,7 +344,7 @@ h2 {
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.49);
 }
 
-.sub-main-w3 input[type="submit"]:hover, .form-actions .form-item  button:hover {
+.sub-main-w3 [type="submit"]:hover, .form-actions .form-item  button:hover {
     background: #000;
     -webkit-transition: 0.5s all;
     -o-transition: 0.5s all;
@@ -583,7 +583,7 @@ input.checkbox:checked:after {
     .wthree-text ul li:nth-child(2) {
         margin-top: 10px;
     }
-    .sub-main-w3 input[type="submit"] {
+    .sub-main-w3 [type="submit"] {
         width: 56%;
     }
     .wthree-text ul li {

@@ -6,6 +6,7 @@
  * The primary PHP file for this theme.
  */
 use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_theme().
@@ -13,9 +14,6 @@ use Drupal\Core\Menu\MenuTreeParameters;
  * Register theme hook implementations.
  */
 function application_theme(&$existing, $type, $theme, $path) {
-  // //suplanter l'inscription.
-  // / doc =>
-  // https://www.drupal.org/docs/7/theming/overriding-themable-output/customizing-and-overriding-user-login-page-register-and
   $items['user_register_form'] = array(
     'render element' => 'form',
     'path' => \Drupal::service('extension.path.resolver')->getPath('theme', 'application') . '/templates/user',
@@ -61,135 +59,51 @@ function application_page_attachments_alter(array &$attachments) {
   }
 }
 
-// function application_preprocess_user_register_form(&$vars) {
-// // displayVarLogstheme($vars['form']['account'],
-// // $filename='preprocess_user_register_form');
-// }
-
-// function application_preprocess_user_login(&$vars) {
-// }
-
-// function application_preprocess_user_pass(&$vars) {
-// $vars['intro_text'] = t('This is my super awesome request new password
-// form');
-// }
-
-// function application_preprocess_node_product_node_form(&$vars) {
-// $vars['intro_text'] = t('This is my super awesome request new password
-// form');
-// }
-
-/**
- * load scss csss
- */
-function _load_scss() {
-  /*
-   * $themeName='application';
-   * # convertie un fichier scss en css.
-   * //require_once
-   * DRUPAL_ROOT.'/sites/all/libraries/scssphp-master/scss.inc.php';
-   * # convert bootstrap scss to css
-   * $parser = new Leafo\ScssPhp\Compiler;
-   * #build bootstrap end default style theme
-   * $result=$parser->compile('@import
-   * "'.DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/scss/bootstrap-overlay.scss";');
-   * $filename =
-   * DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/css/bootstrap.css';
-   * $monfichier = fopen($filename, 'w+');
-   * fputs($monfichier, $result);
-   * fclose($monfichier);
-   * #build custom style
-   * $result=$parser->compile('@import
-   * "'.DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/scss/style.scss";');
-   * $filename = DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/css/style.css';
-   * $monfichier = fopen($filename, 'w+');
-   * fputs($monfichier, $result);
-   * fclose($monfichier);
-   * #build custom style
-   * $result=$parser->compile('@import
-   * "'.DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/scss/accueill.scss";');
-   * $filename =
-   * DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/css/accueill.css';
-   * $monfichier = fopen($filename, 'w+');
-   * fputs($monfichier, $result);
-   * fclose($monfichier);
-   * #build custom style
-   * $result=$parser->compile('@import
-   * "'.DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/scss/article.scss";');
-   * $filename = DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/css/article.css';
-   * $monfichier = fopen($filename, 'w+');
-   * fputs($monfichier, $result);
-   * fclose($monfichier);
-   * #build custom style
-   * $result=$parser->compile('@import
-   * "'.DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/scss/profil.scss";');
-   * $filename = DRUPAL_ROOT.'/sites/all/themes/'.$themeName.'/css/profil.css';
-   * $monfichier = fopen($filename, 'w+');
-   * fputs($monfichier, $result);
-   * fclose($monfichier);
-   */
-}
-
-/**
- * implement hook_css_alter
- */
-function application_css_alter(&$css) {
-  # decommente en mode production
-  # _load_scss();
-}
-
 /**
  * implement hook_preprocess_page
  */
 function application_preprocess_page(&$variables) {
-  // global $user;
-  # decommente en mode developpement
-  _load_scss();
-  # permet de verifier si c'est la page d'acueil
-  // $variables['wbu_is_front'] =
-  // \Drupal::service('path.matcher')->isFrontPage();
-  # charge l'image de l'utilisateur courant
-  // $variables['current_user_img'] = '';
-  // if (!empty($user->picture) && is_numeric($user->picture) && $user->picture
-  // > 0) {
-  // $picture = file_load($user->picture);
-  // // $picture = theme('image', array('path' => $picture->uri, 'alt' =>
-  // // $user->name, 'title' => $user->name));
-  // $variables['current_user_img'] = theme('image_style', array(
-  // 'style_name' => 'thumbnail',
-  // 'path' => $picture->uri,
-  // 'alt' => $user->name,
-  // 'title' => $user->name
-  // ));
-  // }
-  // # add template for login user
-  // $userCurrent = \Drupal::currentUser();
-  // if ($userCurrent->isAuthenticated()) {
-  // $variables['theme_hook_suggestions'][] = 'page__userlogin';
-  // }
-  // $parameters = new MenuTreeParameters();
-  // $parameters->setMinDepth(2)->setMaxDepth(4)->onlyEnabledLinks();
-  // $variables["display_menu"] = _display_menu("main");
-  // new
   $variables['logopath'] = theme_get_setting('logo.url');
   $site_config = \Drupal::config('system.site');
   $variables['site_name'] = $site_config->get('name');
   $variables['site_slogan'] = $site_config->get('slogan');
+  $route = Url::fromRoute('entity.webform.canonical', [
+    'webform' => 'ajouter_un_fichier'
+  ]);
+  $variables['custom_add_file'] = [
+    '#type' => 'link',
+    '#title' => [
+      [
+        '#type' => 'html_tag',
+        '#tag' => 'i',
+        "#attributes" => [
+          'class' => [
+            'fas',
+            'fa-upload'
+          ]
+        ]
+      ],
+      [
+        '#type' => 'html_tag',
+        '#tag' => 'span',
+        "#value" => 'Ajouter un fichier'
+      ]
+    ],
+    '#url' => $route,
+    '#options' => [
+      'attributes' => [
+        'class' => [
+          'btn',
+          'dtb-default'
+        ]
+      ]
+    ]
+  ];
 }
 
 function application_form_alter(&$form, &$form_state, $form_id) {
   $form['#prefix'] = '<div class="block">';
   $form['#suffix'] = '</div>';
-}
-
-/**
- *
- * @param array $variables
- */
-function application_preprocess_menu__main($variables) {
-  foreach ($variables['items'] as &$item) {
-    //
-  }
 }
 
 function application_form_user_login_form_alter(&$form, &$form_state, $form_id) {
