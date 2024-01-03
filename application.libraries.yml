@@ -8,10 +8,16 @@ application:
       theme/css/icon-font.min.css: {}
       css/style.css: {}
   js:
-    js/jquery-3.7.1.min.js: {}
     js/application.js: {}
   dependencies:
+    - core/jquery
     - core/drupal
+    - core/jquery.ui
+    - core/jquery.ui.widget
+    - core/jquery.ui.draggable
+    - core/jquery.ui.mouse
+    - core/jquery.ui.position
+    
 
 
 accueil:
